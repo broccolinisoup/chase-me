@@ -1,0 +1,58 @@
+<!doctype html>
+<html ng-app="timeTracker">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Who wants to track the time?</title>
+
+	<!-- load bootstrap and fontawesome via CDN -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <style>
+        #timeTracker {
+		margin-bottom:50px;
+        }
+    </style>
+
+    <!-- JS -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script><!-- load angular -->
+    <script src="js/controllers/core.js"></script>
+	<script src="js/controllers/mainController.js"></script>
+	<script src="js/controllers/taskController.js"></script>
+	<script src="js/controllers/recordController.js"></script>
+    <script src="js/services/TimeTrackingServices.js"></script>
+    <script src="js/core.js"></script>
+</head>
+
+<div ng-include="'header.html'"></div>
+
+<body ng-controller="mainController">
+<div class="container" >
+	<div class="jumbotron text-center">
+		<h1>Tracking Your Time<span class="label label-info"></span></h1>
+	</div>
+
+	<div id="timeTracker" class="row">
+		<div class="col-sm-8 col-sm-offset-2 text-center">
+			<form name="trackingForm">
+				<div class="form-group">
+					<h2> Select your activity....</h2>
+					<select class="form-control" name="taskList" id="repeatSelect" ng-model="selectedTask" required>
+						<option ng-repeat="task in tasks" value="{{task._id}}">{{task.text}}</option>
+					</select>
+					<span ng-show="trackingForm.taskList.$error.required">Select a task!</span>
+					<a href="/add">Add More Tasks</a>
+					<h1>{{duration | date : 'mm:ss'}}</h1>
+				</div>
+
+				<input type="button" class="col btn-lg btn-primary" ng-click="start()" value="Start"/>
+				<input type="button" class="col btn-lg btn-primary" ng-click="stop($event)" value="Stop"/>
+			</form>
+
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

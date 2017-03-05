@@ -1,0 +1,58 @@
+<!doctype html>
+<html ng-app="timeTracker">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Who wants to track the time?</title>
+
+    <!-- load bootstrap and fontawesome via CDN -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <style>
+        #timeTracker {
+            margin-bottom:50px;
+        }
+    </style>
+
+    <!-- JS -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script><!-- load angular -->
+    <script src="js/controllers/core.js"></script>
+    <script src="js/controllers/mainController.js"></script>
+    <script src="js/controllers/taskController.js"></script>
+    <script src="js/controllers/recordController.js"></script>
+    <script src="js/services/TimeTrackingServices.js"></script>
+    <script src="js/core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+</head>
+
+<div ng-include="'header.html'"></div>
+<body ng-controller="recordController">
+<div class="container">
+
+    <div class="jumbotron text-center">
+        <h1>My Reports<span class="label label-info"></span></h1>
+    </div>
+
+    <div id="task-list" class="row">
+        <div class="col-sm-6">
+            <h3>TODAY</h3>
+            <div class="checkbox" ng-repeat="r in records">
+                <label>
+                    Task : {{ r.task }} || Duration : {{r.duration}} || Created : {{r.created}}
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-6 ">
+            <h3>LAST 7 DAYS</h3>
+            <div class="checkbox" ng-repeat="r in records">
+                <label>
+                    {{ r}}
+                </label>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

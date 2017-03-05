@@ -1,0 +1,80 @@
+<!doctype html>
+<html ng-app="timeTracker">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Who wants to track the time?</title>
+
+	<!-- load bootstrap via CDN -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+	<style>
+		html, body, input, select, textarea, a
+		{
+			font-size: 1.05em !important;
+		}
+		#task-list 				{ margin-bottom:30px; }
+		#task-form 	 			{ margin-bottom:50px; }
+	</style>
+
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script><!-- load angular -->
+	<script src="js/controllers/core.js"></script> <!-- load up our controller -->
+	<script src="js/controllers/mainController.js"></script>
+	<script src="js/controllers/taskController.js"></script>
+	<script src="js/controllers/recordController.js"></script>
+	<script src="js/services/TimeTrackingServices.js"></script> <!-- load our task service -->
+	<script src="js/core.js"></script> <!-- load our main application -->
+
+</head>
+<div ng-include="'header.html'"></div>
+
+<body ng-controller="taskController">
+<div class="container">
+
+	<div class="jumbotron text-center">
+		<h1>My Tasks<span class="label label-info"></span></h1>
+	</div>
+
+	<div id="task-list" class="row">
+		<div class="col-sm-4 col-sm-offset-4">
+
+			<div class="checkbox" ng-repeat="task in tasks">
+				<label>
+					<input type="checkbox" ng-click="deletetask(task._id)"> {{ task.text }}
+				</label>
+			</div>
+
+			<p class="text-center" ng-show="loading">
+				<span class="fa fa-spinner fa-spin fa-3x"></span>
+			</p>
+			<i><small>Click to delete it.</small></i>
+		</div>
+	</div>
+
+
+	<div id="task-form" class="row">
+		<div class="col-sm-8 col-sm-offset-2 text-center">
+			<form>
+				<div class="form-group">
+
+					<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+					<input type="text" class="form-control input-lg text-center" placeholder="Meeting, coding, e-mail checking...." ng-model="formData.text">
+				</div>
+
+				<!-- createtask() WILL CREATE NEW taskS -->
+				<button type="submit" class="btn btn-primary btn-lg" ng-click="createtask()">Add</button>
+				<a href="/" class="btn btn-primary btn-lg">Home</a>
+			</form>
+		</div>
+	</div>
+
+	<div class="text-center text-muted">
+		<p>Made by <a href="https://github.com/broccolinisoup">Armagan</a> and her beloved friend, Coffee.</p>
+	</div>
+
+</div>
+
+</body>
+</html>
