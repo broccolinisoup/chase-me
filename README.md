@@ -4,7 +4,7 @@ Node provides the RESTful API. Angular provides the frontend and accesses the AP
 
 I used http://scotch.io/ Node Todo applications as a reference
 
-What application vocers so far : 
+What application covers so far : 
 
 * Create and delete tasks
 * Recording an activity into DB
